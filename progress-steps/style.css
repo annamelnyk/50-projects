@@ -5,6 +5,13 @@
 }
 
 body {
+  --c-progress: #ccc;
+  --c-progress-active: #066481;
+  --w-step-size: 35px;
+  --w-step-line: 50px;
+  --w-progress-line: 3px;
+  --t-animation-duration: 0.4s;
+
   font-family: "IBM Plex Mono", monospace;
   font-weight: 400;
   font-style: normal;
@@ -16,13 +23,6 @@ body {
 }
 
 .container {
-  --c-progress: #ccc;
-  --c-progress-active: #066481;
-  --w-step-size: 35px;
-  --w-step-line: 50px;
-  --w-progress-line: 3px;
-  --t-animation-duration: 1var(--t-animation-duration);
-
   height: 100vh;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@ body {
   border: var(--w-progress-line) solid var(--c-progress);
   font-size: 16px;
   color: #808080;
-  animation: step-number-inactive var(--t-animation-duration) linear var(--t-animation-duration);
+  transition: var(--t-animation-duration) ease;
 }
 
 .step-progress {
@@ -62,7 +62,7 @@ body {
   left: var(--w-step-size);
   top: 50%;
   transform: translateY(-50%);
-  animation: step-progress-inactive var(--t-animation-duration) linear;
+  transition: var(--t-animation-duration) ease;
 }
 
 .step:last-child {
@@ -74,11 +74,9 @@ body {
 .step.active {
   .step-number {
     border-color: var(--c-progress-active);
-    animation: step-number-active var(--t-animation-duration) linear;
   }
   .step-progress {
     background-color: var(--c-progress-active);
-    animation: step-progress-active var(--t-animation-duration) linear var(--t-animation-duration);
   }
 }
 
@@ -100,42 +98,3 @@ body {
   pointer-events: all;
 }
 
-@keyframes step-progress-active {
-  from {
-    background-color: var(--c-progress);
-  }
-
-  to {
-    background-color: var(--c-progress-active);
-  }
-}
-
-@keyframes step-progress-inactive {
-  from {
-    background-color: var(--c-progress-active);
-  }
-
-  to {
-    background-color: var(--c-progress);
-  }
-}
-
-@keyframes step-number-active {
-  from {
-    border-color: var(--c-progress);
-  }
-
-  to {
-    border-color: var(--c-progress-active);
-  }
-}
-
-@keyframes step-number-inactive {
-  from {
-    border-color: var(--c-progress-active);
-  }
-
-  to {
-    border-color: var(--c-progress);
-  }
-}

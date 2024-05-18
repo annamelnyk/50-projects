@@ -1,5 +1,6 @@
 "use strict"
 
+const CLASS_ACTIVE = "active"
 const stepsParent = document.getElementById("steps")
 const allSteps = document.getElementsByClassName("step")
 const prevButton = document.getElementById("prev")
@@ -9,22 +10,17 @@ renderProgresSteps()
 
 prevButton.addEventListener("click", (e) => {
   const activeSteps = document.getElementsByClassName("step active")
-  console.log("activeSteps ", activeSteps)
 
   for (let i = activeSteps.length; i > 0; i--) {
-    if (activeSteps.length === 2) {
-      activeSteps[i - 1].classList.remove("active")
-      prevButton.classList.remove("active")
-    }
-
     if (activeSteps.length > 1) {
-      activeSteps[i - 1].classList.remove("active")
-    } else {
-      prevButton.classList.remove("active")
+      inactive(activeSteps[i - 1])
+    }
+    if (activeSteps.length === 1) {
+      inactive(prevButton)
     }
 
     if (activeSteps.length < allSteps.length) {
-      nextButton.classList.add("active")
+      active(nextButton)
     }
 
     break
@@ -33,18 +29,17 @@ prevButton.addEventListener("click", (e) => {
 
 nextButton.addEventListener("click", (e) => {
   const activeSteps = document.getElementsByClassName("step active")
-  console.log("activeSteps ", activeSteps)
 
   for (let i = activeSteps.length; i <= allSteps.length; i++) {
     if (activeSteps.length < allSteps.length - 1) {
-      allSteps[i].classList.add("active")
+      active(allSteps[i])
     } else {
-      allSteps[i].classList.add("active")
-      nextButton.classList.remove("active")
+      active(allSteps[i])
+      inactive(nextButton)
     }
 
     if (activeSteps.length > 0) {
-      prevButton.classList.add("active")
+      active(prevButton)
     }
 
     break
@@ -56,7 +51,7 @@ function renderProgresSteps(stepsAmount = 5, container = stepsParent) {
     const step = document.createElement("div")
     step.classList.add("step")
     if (i === 0) {
-      step.classList.add("active")
+      step.classList.add(CLASS_ACTIVE)
     }
     const stepNumber = document.createElement("div")
     stepNumber.classList.add("step-number")
@@ -67,4 +62,12 @@ function renderProgresSteps(stepsAmount = 5, container = stepsParent) {
     step.appendChild(stepNumber)
     step.appendChild(stepProgress)
   }
+}
+
+function active(el) {
+  el.classList.add(CLASS_ACTIVE)
+}
+
+function inactive(el) {
+  el.classList.remove(CLASS_ACTIVE)
 }
