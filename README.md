@@ -7,3 +7,4 @@
 3. Rotating navigation
 4. Hidden search
 5. Blurry loading
+6. Scroll animation
