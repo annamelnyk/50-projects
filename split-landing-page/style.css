@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  --c-playstation: #4c4cff;
+  --c-xbox: green;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.playstation,
+.xbox {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  flex-grow: 1;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.playstation:hover,
+.xbox:hover {
+  flex-grow: 4;
+}
+
+.playstation {
+  background-image: url("./ps.jpg");
+}
+
+.xbox {
+  background-image: url("./xbox.jpg");
+}
+
+.title {
+  color: #fff;
+  font-size: 45px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.button {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 4px solid #fff;
+  padding: 20px 60px;
+  cursor: pointer;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+  transition: all 0.2s linear;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.playstation .overlay,
+.xbox .overlay {
+  opacity: 0.6;
+}
+
+.xbox .overlay {
+  background-color: #3b3b3b;
+}
+
+.playstation .overlay {
+  background-color: var(--c-playstation);
+}
+
+.playstation .button:hover {
+  background-color: var(--c-playstation);
+  border-color: var(--c-playstation);
+}
+
+.xbox .button:hover {
+  background-color: var(--c-xbox);
+  border-color: var(--c-xbox);
+}
