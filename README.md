@@ -9,3 +9,4 @@
 5. Blurry loading
 6. Scroll animation
 7. Split landing page
+8. Form input wave
