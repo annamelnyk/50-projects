@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  --c-main: #8c80b0;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background-color: var(--c-main);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.joke-container {
+  width: 500px;
+  min-height: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+.title {
+  color: rgba(41, 37, 37, 0.281);
+  text-transform: capitalize;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.joke-text {
+  color: #000;
+  min-height: 115px;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 15px;
+  color: #fff;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+  background-color: var(--c-main);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
