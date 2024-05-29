@@ -11,3 +11,4 @@
 7. Split landing page
 8. Form input wave
 9. Dad joke
+10. Event key codes
