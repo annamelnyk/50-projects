@@ -12,3 +12,4 @@
 8. Form input wave
 9. Dad joke
 10. Event key codes
+11. FAQ
