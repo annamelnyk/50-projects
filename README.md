@@ -13,3 +13,4 @@
 9. Dad joke
 10. Event key codes
 11. FAQ
+12. Random choice picker
