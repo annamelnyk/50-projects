@@ -4,11 +4,21 @@ const choicesBox = document.querySelector(".choices-box")
 const textarea = document.querySelector(".textarea")
 let isNewChoice = true
 let currentChoice = null
+let animationStarted = false
+let interval
 
 textarea.addEventListener("keyup", (e) => {
   console.log(e)
   if (e.code === "Enter") {
     setRandomChoice(5)
+    e.target.value = ""
+    return
+  }
+
+  if (e.code === "Escape" && animationStarted) {
+    animationStarted = false
+    clearInterval(interval)
+
     return
   }
 
@@ -39,11 +49,16 @@ function updateChoice(data) {
 
 function setRandomChoice(random) {
   const choices = document.querySelectorAll(".choice")
-  if (random === 0) return
-  choices.forEach(ch => {
-    ch.classList.add('highlighted')
-    setTimeout(() => ch.classList.remove('highlighted'), 100)
-  } )
+  if (animationStarted) return
+  animationStarted = true
 
-  setRandomChoice(random - 1)
+  let timer = random
+  choices.forEach((ch) => {
+    interval = setInterval(() => {
+      setTimeout(() => ch.classList.add("highlighted"), timer)
+      timer = timer + 100
+      setTimeout(() => ch.classList.remove("highlighted"), timer)
+      timer = timer + 50
+    }, 10)
+  })
 }
