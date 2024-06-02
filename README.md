@@ -14,3 +14,4 @@
 10. Event key codes
 11. FAQ
 12. Random choice picker
+13. Increment counter
