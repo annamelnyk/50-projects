@@ -68,13 +68,14 @@ body {
 }
 
 .remained-amount {
-  font-size: 25px;
+  font-size: 22px;
 }
 
-.glass .filled {
+.glass .filled-amount {
+  font-size: 22px;
   background-color: var(--c-water);
   color: #fff;
-  height: 12.5%;
+  height: 0;
   width: 100%;
   justify-self: flex-start;
 }
