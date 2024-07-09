@@ -35,6 +35,77 @@ body {
   margin: 25px auto;
 }
 
+.clock {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 25px auto;
+}
+
+.clock::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hour {
+  width: 3px;
+  height: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, -25px);
+}
+
+.minute {
+  width: 2px;
+  height: 65px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.second {
+  width: 2px;
+  height: 70px;
+  background-color: darkred;
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.time-block {
+  font-size: 45px;
+  font-weight: 500;
+}
+
+.date-block {
+  text-transform: uppercase;
+  font-size: 15px;
+  color: gray;
+  display: flex;
+  align-items: center;
+}
+
+.date {
+  margin-left: 10px;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+}
+
 /* light mode */
 .main.light-mode {
   background-color: var(--c-light);
@@ -46,4 +117,43 @@ body {
   color: var(--c-light);
 }
 
+.main.light-mode .clock::before,
+.main.light-mode .hour,
+.main.light-mode .minute {
+  background-color: var(--c-dark);
+}
+
+.main.light-mode .time-block {
+  color: var(--c-dark);
+}
+
+.main.light-mode .date {
+  background-color: var(--c-dark);
+  color: var(--c-light);
+}
+
 /* dark mode */
+.main.dark-mode {
+  background-color: var(--c-dark);
+  color: var(--c-light);
+}
+
+.main.dark-mode .mode {
+  background-color: var(--c-light);
+  color: var(--c-dark);
+}
+
+.main.dark-mode .clock::before,
+.main.dark-mode .hour,
+.main.dark-mode .minute {
+  background-color: var(--c-light);
+}
+
+.main.dark-mode .time-block {
+  color: var(--c-light);
+}
+
+.main.dark-mode .date {
+  background-color: var(--c-light);
+  color: var(--c-dark);
+}
