@@ -21,7 +21,7 @@ modeBtn.addEventListener("click", () => {
   }
 })
 
-showTime().then(displayDateAndTime)
+showTime().then(() => displayDateAndTime())
 
 // helpers
 function showTime() {
@@ -64,11 +64,12 @@ function displayDateAndTime() {
 
   const dateSpan = document.createElement("span")
   dateSpan.classList.add("date")
+  dateBlock.appendChild(dateSpan)
   dateSpan.textContent = date
 
   dateBlock.textContent = `${dayNames[day]}, ${monthNames[month]}`
-  dateBlock.appendChild(dateSpan)
   timeBlock.textContent = getTimeFormat()
+  console.log('Updated')
 }
 
 function getTimeFormat() {
