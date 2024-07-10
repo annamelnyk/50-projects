@@ -2,8 +2,12 @@
 
 const main = document.querySelector(".main")
 const modeBtn = document.querySelector(".mode")
-const dateBlock = document.querySelector(".date-block")
+const dateBlock = document.querySelector(".date-span")
+const dateSpan = document.querySelector(".date")
 const timeBlock = document.querySelector(".time-block")
+const hourArrow = document.querySelector(".clock .hour")
+const minuteArrow = document.querySelector(".clock .minute")
+const secondArrow = document.querySelector(".clock .second")
 
 modeBtn.addEventListener("click", () => {
   if (main.classList.contains("light-mode")) {
@@ -21,16 +25,13 @@ modeBtn.addEventListener("click", () => {
   }
 })
 
-showTime().then(() => displayDateAndTime())
+setInterval(displayDateAndTime, 1000)
 
 // helpers
-function showTime() {
-  return new Promise(resolve => {
-    const intId = setInterval(() => {
-      clearInterval(intId);
-      resolve();
-    }, 1000)
-  })
+function moveClockArrows(hours, minutes, seconds) {
+  hourArrow.style.transform = `rotate(${0 + 30 * hours}deg)`
+  minuteArrow.style.transform = `rotate(${0 + 6 * minutes}deg)`
+  secondArrow.style.transform = `rotate(${0 + 6 * seconds}deg)`
 }
 
 function displayDateAndTime() {
@@ -62,29 +63,26 @@ function displayDateAndTime() {
     "Dec"
   ]
 
-  const dateSpan = document.createElement("span")
-  dateSpan.classList.add("date")
-  dateBlock.appendChild(dateSpan)
   dateSpan.textContent = date
 
   dateBlock.textContent = `${dayNames[day]}, ${monthNames[month]}`
   timeBlock.textContent = getTimeFormat()
-  console.log('Updated')
 }
 
 function getTimeFormat() {
-  let date = new Date();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let newformat = hours >= 12 ? 'PM' : 'AM';
+  let date = new Date()
+  let hours = date.getHours()
+  let minutes = date.getMinutes()
+  let seconds = date.getSeconds()
+  let newformat = hours >= 12 ? "PM" : "AM"
 
   // Find current hour in AM-PM Format
-  hours = hours % 12;
+  hours = hours % 12
 
   // To display "0" as "12"
-  hours = hours ? hours : 12;
-  minutes = minutes < 10 ? '0' + minutes : minutes;
+  hours = hours ? hours : 12
+  minutes = minutes < 10 ? "0" + minutes : minutes
 
-  return `${hours}:${minutes} ${newformat}`;
+  moveClockArrows(hours, minutes, seconds)
+  return `${hours}:${minutes} ${newformat}`
 }
-

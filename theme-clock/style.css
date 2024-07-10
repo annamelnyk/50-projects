@@ -47,41 +47,43 @@ body {
 
 .clock::before {
   content: "";
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.hour,
+.minute,
+.second {
+  position: absolute;
+  left: 49%;
+  transition: all 0.5s linear;
+  transform: translateX(-50%);
+  transform-origin: bottom right;
 }
 
 .hour {
   width: 3px;
   height: 50px;
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translate(-50%, -25px);
+  top: 25px;
 }
 
 .minute {
   width: 2px;
   height: 65px;
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 8px;
 }
 
 .second {
   width: 2px;
   height: 70px;
   background-color: darkred;
-  position: absolute;
-  top: 7px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 6px;
 }
 
 .time-block {
