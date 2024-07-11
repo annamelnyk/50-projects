@@ -62,7 +62,6 @@ body {
 .second {
   position: absolute;
   left: 49%;
-  transition: all 0.5s linear;
   transform: translateX(-50%);
   transform-origin: bottom right;
 }
@@ -76,14 +75,14 @@ body {
 .minute {
   width: 2px;
   height: 65px;
-  top: 8px;
+  top: 10px;
 }
 
 .second {
   width: 2px;
   height: 70px;
   background-color: darkred;
-  top: 6px;
+  top: 4px;
 }
 
 .time-block {
