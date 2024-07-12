@@ -35,5 +35,32 @@ body {
   border-radius: 4px;
   border: none;
   outline: none;
-  background-color: purple;
+  background: purple;
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  transform: scale(0);
+  background: #cf9fff;
+  border-radius: 50%;
+}
+
+.animate {
+  animation: ripple-mo 1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes ripple-mo {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
 }
