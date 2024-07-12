@@ -17,3 +17,7 @@
 13. Increment counter
 14. Drink water
 15. Movie App
+16. Background Slider
+17.	Theme Clock
+18.	Button Ripple Effect
+19. Drag N Drop
