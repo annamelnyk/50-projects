@@ -27,15 +27,22 @@ body {
   gap: 20px;
 }
 
-.block {
+.empty {
   width: var(--size);
   height: var(--size);
   background-color: #fff;
-  background-position: center center;
-  background-size: cover;
   border: 2px solid black;
 }
 
-.block:first-child {
+.block {
+  width: 100%;
+  height: 100%;
   background-image: url(../assets/images/image-10.jpg);
+  background-position: center center;
+  background-size: cover;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
 }
