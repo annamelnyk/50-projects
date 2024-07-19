@@ -1,9 +1,11 @@
 "use strict"
 
-const CLASS_EMPTY = 'empty';
-const CLASS_BLOCK = 'block';
-const CLASS_DRAGGED = 'dragged';
-const CLASS_DRAGOVER = 'dragover';
+const CLASS_EMPTY = "empty"
+const CLASS_HIDDEN = "hidden"
+const CLASS_WARNING = "warning"
+const CLASS_BLOCK = "block"
+const CLASS_DRAGGED = "dragged"
+const CLASS_DRAGOVER = "dragover"
 
 const main = document.querySelector(".main")
 let emptyDivs
@@ -16,7 +18,14 @@ function createDraggableBlocks() {
     const empty = document.createElement("div")
     empty.classList.add(CLASS_EMPTY)
     main.appendChild(empty)
-    addDragListeners(empty)
+    empty.addEventListener("dragstart", dragstart)
+    empty.addEventListener("touchstart", touchstart)
+    empty.addEventListener("dragenter", dragenter)
+    empty.addEventListener("dragleave", dragleave)
+    empty.addEventListener("dragover", dragover)
+    empty.addEventListener("dragend", dragend)
+    empty.addEventListener("touchend", touchend)
+    empty.addEventListener("drop", drop)
   }
 
   emptyDivs = document.querySelectorAll(".empty")
@@ -26,40 +35,52 @@ function createDraggableBlocks() {
   emptyDivs[0].appendChild(draggableBlock)
 }
 
-function addDragListeners(el) {
-  el.addEventListener("dragstart", (event) => {
-    console.log("dragstart")
-    //event.dataTransfer.setData("text/html", event.target)
-    draggableBlock.classList.add(CLASS_DRAGGED)
-  })
+function dragstart(event) {
+  console.log("dragstart")
+  //event.dataTransfer.setData("text/html", event.target)
+  draggableBlock.classList.add(CLASS_DRAGGED)
+  setTimeout(() => draggableBlock.classList.add(CLASS_HIDDEN), 0)
+}
 
-  el.addEventListener("dragenter", (event) => {
-    console.log("dragenter")
-    //draggableBlock.classList.add(CLASS_DRAGGED)
-  })
+function dragenter(event) {
+  console.log("dragenter")
+  //draggableBlock.classList.add(CLASS_DRAGGED)
+}
 
-  el.addEventListener("dragleave", (event) => {
-    console.log("dragleave")
-    event.target.classList.remove(CLASS_DRAGOVER)
-  })
+function dragleave(event) {
+  console.log("dragleave")
+  event.target.classList.remove(CLASS_DRAGOVER)
+}
 
-  el.addEventListener("dragover", (event) => {
-    console.log("dragover")
-    event.preventDefault()
-    event.target.classList.add(CLASS_DRAGOVER)
-  })
+function dragover(event) {
+  console.log("dragover")
+  event.preventDefault()
+  event.target.classList.add(CLASS_DRAGOVER)
+}
 
-  el.addEventListener("dragend", (event) => {
-    console.log("dragend")
-    draggableBlock.classList.remove(CLASS_DRAGGED)
-    Array.from(emptyDivs).forEach(div => div.classList.remove(CLASS_DRAGOVER))
-  })
+function dragend(event) {
+  console.log("dragend")
+  draggableBlock.classList.remove(CLASS_DRAGGED)
+  Array.from(emptyDivs).forEach((div) => div.classList.remove(CLASS_DRAGOVER))
+  draggableBlock.classList.remove(CLASS_HIDDEN)
+}
 
-  el.addEventListener("drop", (event) => {
-    console.log("drop")
-    if ([...event.target.classList].includes(CLASS_EMPTY)) {
-      draggableBlock.parentNode.removeChild(draggableBlock)
-      el.appendChild(draggableBlock)
-    }
-  })
+function drop(event) {
+  console.log("drop")
+  if ([...event.target.classList].includes(CLASS_EMPTY)) {
+    draggableBlock.parentNode.removeChild(draggableBlock)
+    event.target.appendChild(draggableBlock)
+    draggableBlock.classList.remove(CLASS_HIDDEN)
+  }
+}
+
+function touchstart() {
+  const warning = document.createElement("h1")
+  warning.classList.add(CLASS_WARNING)
+  main.insertBefore(warning, main.firstChild)
+  warning.textContent = 'Warning touchpad is inactive'
+}
+
+function touchend() {
+  main.removeChild(document.querySelector('.warning'))
 }
